@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Time To eat</title>
-	<link rel="stylesheet" type="text/css" href="css/loggedin.css">
+	<link rel="stylesheet" type="text/css" href="css/dashboard.css">
 </head>
 <body>
 	<aside>

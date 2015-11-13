@@ -1,0 +1,9 @@
+input{
+	margin-bottom: 15px;
+}
+#errors{
+	position:relative;
+	bottom:90%;
+	left:50%;
+	color:red;
+}
