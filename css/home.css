@@ -8,3 +8,8 @@ form,h1{
 	left: 40%;
 	width:300px;
 }
+video{
+	position: relative;
+	left: 65%;
+	top: 10%;
+}
