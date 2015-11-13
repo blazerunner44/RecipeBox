@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!Doctype html>
 <html>
 <head>
@@ -6,12 +7,15 @@
 </head>
 <body>
 	<aside>
-		<img src="profilepic.png" />
-		<h2>Stuff</h2>
+		<img src="images/default_profile.jpg" id="profilePic" />
+		<h3><?php echo $_SESSION['auth']['firstName'] . ' ' . $_SESSION['auth']['lastName']; ?></h3>
 	</aside>
 
 	<main>
-		<h1>Hello "username"</h1>
+		<h1>Recipe Books</h1>
+		<?php
+		$id = $_SESSION['auth']['id']
+		$query = mysqli_query($con, "SELECT name, image FROM books WHERE owner_id = $")
 	</main>
 
 </body>
