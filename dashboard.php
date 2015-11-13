@@ -14,8 +14,13 @@
 	<main>
 		<h1>Recipe Books</h1>
 		<?php
-		$id = $_SESSION['auth']['id']
-		$query = mysqli_query($con, "SELECT name, image FROM books WHERE owner_id = $")
+		$user_id = (int)$_SESSION['auth']['id'];
+		var_dump($user_id);
+		$query = mysqli_query($con, "SELECT name, image FROM books WHERE owner_id = $user_id");
+		while($row = mysqli_fetch_array($query)){
+			echo "bralehey";
+		}
+		?>
 	</main>
 
 </body>
