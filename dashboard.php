@@ -9,6 +9,20 @@ require 'services/mysql.php';
 	<link rel="stylesheet" type="text/css" href="css/dashboard.css">
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+
+	<script type="text/javascript">
+	function button(){
+		$.post('services/books/', $("#createBookForm").serialize(), function(data){
+			data = jQuery.parseJSON(data);
+			console.log(data.status);
+			if(data.status == 200){
+				location.reload();
+			}else{
+				alert(data.response);
+			}
+		});
+	}
+	</script>
 </head>
 <body>
 	<aside>
@@ -32,7 +46,7 @@ EOS;
 
 			}
 			?>
-			<div class="book" id="lastBook" onclick="$(this).css('background-image', 'none').html('<form><div class=\'form-group\'><label>Name</label><input type=\'text\' class=\'form-control\'></div></form>');">
+			<div class="book" id="lastBook" onclick="$(this).css('background-image', 'none').attr('onclick', null).html('<form id=\'createBookForm\' onsubmit=\'formSubmit()\'><div class=\'form-group\'><label>Name</label><input type=\'text\' class=\'form-control\' name=\'name\'></div><div class=\'form-group\'><label>Description</label><textarea rows=\'4\' class=\'form-control\' name=\'description\'></textarea><button type=\'button\' id=\'createBookButton\' onclick=\'button();\' class=\'btn btn-primary\' style=\'float:right;margin-top:15px;margin-right:5px\'>Create</button></form>');">
 				Add Book
 			</div>
 		</div>
