@@ -14,6 +14,7 @@ require 'services/mysql.php';
 	<aside>
 		<img src="images/default_profile.jpg" id="profilePic" />
 		<h3><?php echo $_SESSION['auth']['firstName'] . ' ' . $_SESSION['auth']['lastName']; ?></h3>
+		<a href="settings.php"> Don't have an account?</a>
 	</aside>
 
 	<main>
