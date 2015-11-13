@@ -24,3 +24,20 @@ h3{
 	text-align: center;
 	margin-top:-10px;
 }
+.book{
+	/*background-color:gray;*/
+	width:250px;
+	height:350px;
+	display:inline-block;
+	/*background-image: url("/images/book.png");*/
+	border: 3px solid black;
+	border-radius: 3px;
+	cursor: pointer;
+}
+#lastBook{
+	background-image: url("/images/new_book.png");
+}
+.book h3{
+	padding-top:15px;
+	font-size: 18pt;
+}

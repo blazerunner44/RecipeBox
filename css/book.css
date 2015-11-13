@@ -1,0 +1,14 @@
+ul{
+	list-style: none;
+	width:250px;
+	margin-left: -45px;
+}
+li{
+	color:white;
+	font-size:18pt;
+	width:100%;
+	border-bottom: 1px dashed gray;
+	text-indent: 25px;
+	margin-bottom: 15px;
+	cursor: pointer;
+}
