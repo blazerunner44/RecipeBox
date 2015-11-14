@@ -16,6 +16,21 @@ require 'services/mysql.php';
 	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 
 	<script type="text/javascript">
+	function deleteRecipe(recipeId){
+		$.ajax({
+		    url: 'services/recipies/?recipe=' + recipeId,
+		    type: 'DELETE',
+		    success: function(data) {
+		    	console.log(data);
+		        data = jQuery.parseJSON(data);
+		        if(data.status == 200){
+		        	location.reload();
+		        }else{
+		        	alert(data.response);
+		        }
+		    }
+		});
+	}
 	function createRecipe(){
 		$.post('services/recipies/', $("#createRecipeForm").serialize(), function(data){
 			console.log(data);
@@ -28,10 +43,31 @@ require 'services/mysql.php';
 		});
 	}
 
+	function editRecipe(recipeId){
+		$("#createRecipeForm").trigger('reset');
+		$("#recipeId").attr('value', recipeId);
+		$.getJSON('services/recipies/', {recipe: recipeId}, function(data){
+			recipe = data.response;
+			$('#addRecipeModal').modal();
+			$('#name').val(recipe.name);
+			$('#description').val(recipe.description);
+			$.each(jQuery.parseJSON(recipe.ingredients), function(ingredient, measurement){
+				$("#ingredientCont input[name='ingredient[]'").last().val(ingredient);
+				$("#ingredientCont input[name='measurement[]'").last().val(measurement);
+				$('#additionalIngredient').trigger('click');
+			});
+			$.each(jQuery.parseJSON(recipe.steps), function(index, step){
+				$("#stepCont input[name='steps[]'").last().val(step);
+				$('#additionalStep').trigger('click');
+			});
+		})
+		
+	}
+
 	function loadRecipe(id){
 		$.getJSON('services/recipies/', {recipe: id}, function(data){
 			var recipe = data.response;
-			var appendMe = "<div class='row'><div id='title'><h1>" + recipe.name + "</h1>" +
+			var appendMe = "<div class='row'><div id='title'><h1>" + recipe.name + "<small><span class='glyphicon glyphicon-pencil' onclick='editRecipe(" + recipe.id + ");'>Edit</span><span class='glyphicon glyphicon-trash' onclick='deleteRecipe(" + recipe.id + ");'>Delete</span></small></h1>" +
 				"<p>" + recipe.description + "</p></div>" +
 				"<div id='image'><img src='" + recipe.image + "'><span class='glyphicon glyphicon-pencil' data-toggle='modal' data-target='#uploadImage' onclick='$(&quot;#recipeHidden&quot;).attr(&quot;value&quot;, &quot;" + recipe.id + "&quot;);'></span></div></div>" +
 				"<div id='ingredients' class='row'>" + 
@@ -68,7 +104,7 @@ require 'services/mysql.php';
 				echo "<li data-id='{$row[id]}' onclick='loadRecipe({$row[id]});'>{$row[name]}</li>";
 			}
 			?>
-			<li id="addRecipe" data-toggle="modal" data-target="#addRecipeModal">+ Add Recipe</li>
+			<li id="addRecipe" data-toggle="modal" data-target="#addRecipeModal" onclick="$('#createRecipeForm').trigger('reset');">+ Add Recipe</li>
 		</ul>
 		<a href="dashboard.php">Back</a>
 	</aside>
@@ -90,11 +126,11 @@ require 'services/mysql.php';
         <form id="createRecipeForm" enctype="multipart/form-data">
         	<div class="form-group">
         		<label>Name</label>
-        		<input type="text" class="form-control" name="name">
+        		<input type="text" class="form-control" name="name" id="name">
         	</div>
         	<div class="form-group">
         		<label>Description</label>
-        		<textarea class="form-control" name="description" rows="4"></textarea>
+        		<textarea class="form-control" name="description" rows="4" id="description"></textarea>
         	</div>
         	<div class="form-group" id="ingredientCont">
         		<label>Ingredients</label><br>
@@ -103,13 +139,14 @@ require 'services/mysql.php';
         			<input class="form-control measurement" name="measurement[]" placeholder="Measurement">
         		</div>
         	</div>
-        	<a onclick="$('#ingredientTemplate').clone().appendTo('#ingredientCont').find('input').val('');" href="#">Add Ingredient</a>
+        	<a onclick="$('#ingredientTemplate').clone().appendTo('#ingredientCont').find('input').val('');" href="#" id="additionalIngredient">Add Ingredient</a>
         	<div class="form-group" id="stepCont">
         		<label>Steps</label><br>
         		<input class="form-control step" id="stepTemplate" name="steps[]" placeholder="Recipe Step">
         	</div>
-        	<a onclick="$('#stepTemplate').clone().appendTo('#stepCont').val('');" href="#">Add Step</a>
+        	<a onclick="$('#stepTemplate').clone().appendTo('#stepCont').val('');" href="#" id="additionalStep">Add Step</a>
         	<input type="hidden" name="book" value="<?php echo $book_id; ?>" />
+        	<input type="hidden" name="recipe" value="null" id="recipeId" />
         </form>
       </div>
       <div class="modal-footer">
