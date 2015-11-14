@@ -27,6 +27,30 @@ require 'services/mysql.php';
 			}
 		});
 	}
+
+	function loadRecipe(id){
+		$.getJSON('services/recipies/', {recipe: id}, function(data){
+			var recipe = data.response;
+			var appendMe = "<div class='row'><div id='title'><h1>" + recipe.name + "</h1>" +
+				"<p>" + recipe.description + "</p></div>" +
+				"<div id='image'><img src='" + recipe.image + "'></div></div>" +
+				"<div id='ingredients' class='row'>" + 
+				"<h3>Ingredients</h3>";
+			$.each(jQuery.parseJSON(recipe.ingredients), function(ingredient, measurement){
+				appendMe += "<div class='ingredient2'><h4>" + ingredient + "</h4>";
+				appendMe += "<h4 class='measurement'>" + measurement + "</h4></div>";
+			});
+			appendMe += "</div>";
+
+			appendMe += "<div id='steps' class='row'><h3>Steps</h3>";
+			$.each(jQuery.parseJSON(recipe.steps), function(index, step){
+				appendMe += "<div class='step'>" + parseInt(index + 1) + ". " + step + "</div>";
+			});
+			appendMe += "</div>";
+
+			$("main").html(appendMe);
+		});
+	}
 	</script>
 </head>
 <body>
@@ -39,9 +63,9 @@ require 'services/mysql.php';
 		?>
 		<ul>
 			<?php
-			$query = mysqli_query($con, "SELECT name FROM recipies WHERE book = $book_id");
+			$query = mysqli_query($con, "SELECT id, name FROM recipies WHERE book = $book_id");
 			while($row = mysqli_fetch_array($query)){
-				echo "<li>{$row[name]}</li>";
+				echo "<li data-id='{$row[id]}' onclick='loadRecipe({$row[id]});'>{$row[name]}</li>";
 			}
 			?>
 			<li id="addRecipe" data-toggle="modal" data-target="#addRecipeModal">+ Add Recipe</li>

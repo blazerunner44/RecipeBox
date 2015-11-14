@@ -29,3 +29,29 @@ h2{
 	width:100%;
 	text-align: center;
 }
+h1{
+	font-size:48pt !important;
+}
+#title{
+	width:60%;
+	display: inline;
+	float:left;
+}
+#image{
+	width:35%;
+	display: inline;
+	float:right;
+}
+#image img{
+	border-radius: 50%;
+}
+.row{
+	margin-left:15px !important;
+}
+#ingredients{
+	width:25%;
+}
+.measurement{
+	float:right;
+	margin-top: -25px;
+}

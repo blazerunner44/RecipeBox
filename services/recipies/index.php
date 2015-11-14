@@ -6,7 +6,23 @@ session_start();
 $owner_id = (int)$_SESSION['auth']['id'];
 
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
-	echo 'hi';
+	if($_GET['book'] != ''){
+		$result = array();
+		$book_id = (int)$_GET['book'];
+		$query = mysqli_query($con, "SELECT id, name, description, image, book, ingredients, steps FROM recipies WHERE book = $book_id");
+		while($row = mysqli_fetch_array($query)){
+			$result[$row['id']] = array('id' => $row['id'], 'name' => $row['name'], 'description' => $row['description'], 'image' => $row['image'], 'book' => $row['book'], 'ingredients' => $row['ingredients'], 'steps' => $row['steps']);
+		}
+		echo createJSON(200, $result);
+	}
+	if($_GET['recipe'] != ''){
+		$recipe_id = (int)$_GET['recipe'];
+		$query = mysqli_query($con, "SELECT id, name, description, image, book, ingredients, steps FROM recipies WHERE id = $recipe_id");
+		while($row = mysqli_fetch_array($query)){
+			$result = array('id' => $row['id'], 'name' => $row['name'], 'description' => $row['description'], 'image' => $row['image'], 'book' => $row['book'], 'ingredients' => $row['ingredients'], 'steps' => $row['steps']);
+		}
+		echo createJSON(200, $result);
+	}
 
 }elseif($_SERVER['REQUEST_METHOD'] == 'POST'){
 	//$_POST = escape($con, $_POST);
