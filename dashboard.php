@@ -45,7 +45,7 @@ require 'services/mysql.php';
 	<aside>
 		<img src="<?php echo $_SESSION['auth']['profile_pic']; ?>" id="profilePic" />
 		<h3><?php echo $_SESSION['auth']['firstName'] . ' ' . $_SESSION['auth']['lastName']; ?></h3>
-		<a  data-toggle='modal' data-target='#uploadImage'> Change Profile Picture</a>
+		<a data-toggle='modal' data-target='#uploadImage'> Change Profile Picture</a>
 	</aside>
 
 	<main>
@@ -64,7 +64,7 @@ require 'services/mysql.php';
 					<h3 onclick='location.href = "book.php?book=$row[id]";'>$row[name]</h3>
 					<p>$row[description]</p>
 					<button class='btn btn-danger' type='button' onclick='deleteBook($row[id])'>Delete</button>
-					<button class='btn btn-primary' type='button'>Share</button>
+					<button class='btn btn-primary' type='button' data-toggle='modal' data-target='#shareBook' onclick='$("#bookHidden").val("$row[id]");'>Share</button>
 				</div>
 EOS;
 
@@ -95,6 +95,35 @@ EOS;
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-success" form="uploadImageForm">Upload</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="shareBook" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Share Recipe Book</h4>
+      </div>
+      <div class="modal-body">
+        <form id="shareForm" method="post" action="shareBook.php">
+        	
+        	<div class="form-group">
+        		<label>Comma Seperated Email Addresses</label>
+        		<input type="text" class="form-control" name="shareWithEmails">
+        	</div>
+        	<div class="form-group">
+        		<label>Additional Message</label>
+        		<textarea rows="7" name="message" class="form-control"></textarea>
+        	</div>
+        	<input type="hidden" name="book" id="bookHidden" value="null" />
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" form="shareForm">Share</button>
       </div>
     </div>
   </div>

@@ -1,9 +1,12 @@
 <?php 
 if($_GET['book'] == ''){
-	header('Location: dashboard.php');
+	exit;
 }
 session_start();
 require 'services/mysql.php';
+$query = mysqli_query($con, "SELECT id FROM books WHERE share_key = $_GET[book]");
+$row = mysqli_fetch_array($query);
+$_GET['book'] = $row['id'];
 ?>
 <!Doctype html>
 <html>

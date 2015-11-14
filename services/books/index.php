@@ -23,7 +23,8 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 }elseif($_SERVER['REQUEST_METHOD'] == 'POST'){
 	$_POST = escape($con, $_POST);
 	//var_dump($_POST);
-	if(mysqli_query($con, "INSERT INTO books (name, description, owner_id) VALUES ('$_POST[name]', '$_POST[description]', $owner_id)")){
+	$rand = mt_rand(100000, 999999);
+	if(mysqli_query($con, "INSERT INTO books (name, description, owner_id, share_key) VALUES ('$_POST[name]', '$_POST[description]', $owner_id, $rand)")){
 		echo createJSON(200, "Book created successfully!");
 	}else{
 		echo createJSON(500, mysqli_error($con));
