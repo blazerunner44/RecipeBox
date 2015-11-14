@@ -32,7 +32,10 @@ require 'services/mysql.php';
 	</aside>
 
 	<main>
-		<h1>Recipe Books</h1>
+		<header>
+		<a href="index.html"> Log out</a>
+		</header>
+		<h1>Recipe Books:</h1>
 
 		<div id="books">
 			<?php
