@@ -56,6 +56,7 @@
   </div>
   
   <button type="submit" class="btn btn-primary">Sign Up</button>
+  <a href="index.php">Didn't mean to go here?</a>
  </form>
 </body>
  </html>

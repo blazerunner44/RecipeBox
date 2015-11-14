@@ -1,3 +1,6 @@
+body{
+	background-color: blue;
+}
 ul{
 	list-style: none;
 	width:250px;
@@ -22,7 +25,7 @@ li{
 	display:inline !important;
 }
 .step{
-	margin-bottom: 7px;
+	margin-bottom: 2px;
 }
 h2{
 	color:white !important;
@@ -69,4 +72,9 @@ aside a{
 }
 main span{
 	cursor: pointer;
+	padding-left: 50pt;
+
+}
+head{
+	position: absolute;
 }
