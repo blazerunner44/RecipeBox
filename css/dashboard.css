@@ -39,14 +39,16 @@ h3{
 #lastBook{
 	background-image: url("/images/new_book.png");
 	margin-top: -10px;
-	padding-top: 101px;
+	padding-left: 85px;
+	border: 3px dashed black;
+	font-size: 83pt;
 }
 .book h3{
 	padding-top:15px;
 	font-size: 18pt;
 }
 header{
-	width: 106.15%;
+	width: 102.25%;
 	background-color: black;
 	height: 60px;
 	right: 10%;
