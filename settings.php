@@ -8,7 +8,7 @@ require 'services/mysql.php';
 <!Doctype html>
 <html>
 <head>
-	<title>Time To eat</title>
+	<title>Profile</title>
 	<link rel="stylesheet" type="text/css" href="css/dashboard.css">
 	<link rel="stylesheet" type="text/css" href="css/book.css">
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
