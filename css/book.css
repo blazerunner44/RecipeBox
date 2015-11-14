@@ -39,11 +39,14 @@ h1{
 }
 #image{
 	width:35%;
+	max-width:300px;
 	display: inline;
 	float:right;
+	margin:25px 50px;
 }
 #image img{
 	border-radius: 50%;
+	width:100%;
 }
 .row{
 	margin-left:15px !important;

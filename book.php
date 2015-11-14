@@ -33,7 +33,7 @@ require 'services/mysql.php';
 			var recipe = data.response;
 			var appendMe = "<div class='row'><div id='title'><h1>" + recipe.name + "</h1>" +
 				"<p>" + recipe.description + "</p></div>" +
-				"<div id='image'><img src='" + recipe.image + "'></div></div>" +
+				"<div id='image'><img src='" + recipe.image + "'><span class='glyphicon glyphicon-pencil' data-toggle='modal' data-target='#uploadImage' onclick='$(&quot;#recipeHidden&quot;).attr(&quot;value&quot;, &quot;" + recipe.id + "&quot;);'></span></div></div>" +
 				"<div id='ingredients' class='row'>" + 
 				"<h3>Ingredients</h3>";
 			$.each(jQuery.parseJSON(recipe.ingredients), function(ingredient, measurement){
@@ -78,7 +78,7 @@ require 'services/mysql.php';
 
 		
 	</main>
-<!-- Modal -->
+<!-- Add Recipe Modal -->
 <div class="modal fade" id="addRecipeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -87,7 +87,7 @@ require 'services/mysql.php';
         <h4 class="modal-title" id="myModalLabel">New Recipe</h4>
       </div>
       <div class="modal-body">
-        <form id="createRecipeForm">
+        <form id="createRecipeForm" enctype="multipart/form-data">
         	<div class="form-group">
         		<label>Name</label>
         		<input type="text" class="form-control" name="name">
@@ -95,10 +95,6 @@ require 'services/mysql.php';
         	<div class="form-group">
         		<label>Description</label>
         		<textarea class="form-control" name="description" rows="4"></textarea>
-        	</div>
-        	<div class="form-group">
-        		<label>Image</label>
-        		<input type="file" name="pic">
         	</div>
         	<div class="form-group" id="ingredientCont">
         		<label>Ingredients</label><br>
@@ -119,6 +115,31 @@ require 'services/mysql.php';
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" onclick="createRecipe();">Add Recipe</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="uploadImage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Upload Image</h4>
+      </div>
+      <div class="modal-body">
+        <form id="uploadImageForm" enctype="multipart/form-data" method="post" action="recipeImage.php?book=<?php echo $book_id; ?>">
+        	
+        	<div class="form-group">
+        		<label>Recipe Image</label>
+        		<input type="file" name="image">
+        	</div>
+        	<input type="hidden" name="recipe" id="recipeHidden" value="null" />
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-success" form="uploadImageForm">Upload</button>
       </div>
     </div>
   </div>
