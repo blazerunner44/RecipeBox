@@ -39,9 +39,12 @@ h3{
 #lastBook{
 	background-image: url("/images/new_book.png");
 	margin-top: -10px;
-	padding-left: 85px;
 	border: 3px dashed black;
+	padding:15px;
+}
+#plus{
 	font-size: 83pt;
+	padding-left: 85px;
 }
 .book h3{
 	padding-top:15px;
@@ -56,4 +59,8 @@ header{
 header a{
 	color: white;
 	float: right;
+}
+button{
+	margin-top:100px;
+	position: relative;
 }

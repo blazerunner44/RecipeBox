@@ -23,6 +23,22 @@ require 'services/mysql.php';
 			}
 		});
 	}
+
+	function deleteBook(bookId){
+		$.ajax({
+		    url: 'services/books/?book=' + bookId,
+		    type: 'DELETE',
+		    success: function(data) {
+		    	console.log(data);
+		        data = jQuery.parseJSON(data);
+		        if(data.status == 200){
+		        	location.reload();
+		        }else{
+		        	alert(data.response);
+		        }
+		    }
+		});
+	}
 	</script>
 </head>
 <body>
@@ -44,17 +60,18 @@ require 'services/mysql.php';
 			$query = mysqli_query($con, "SELECT id, name,description, image FROM books WHERE owner_id = {$user_id}") or die(mysqli_error($con));
 			while($row = mysqli_fetch_assoc($query)){
 				echo <<<EOS
-				<div class='book' onclick='location.href = "book.php?book=$row[id]";'>
-					<h3>$row[name]</h3>
+				<div class='book'>
+					<h3 onclick='location.href = "book.php?book=$row[id]";'>$row[name]</h3>
 					<p>$row[description]</p>
-					<span class = 'glyphicon glyphicon-trash'></span>
+					<button class='btn btn-danger' type='button' onclick='deleteBook($row[id])'>Delete</button>
+					<button class='btn btn-primary' type='button'>Share</button>
 				</div>
 EOS;
 
 			}
 			?>
 			<div class="book" id="lastBook" onclick="$(this).css('background-image', 'none').attr('onclick', null).html('<form id=\'createBookForm\' onsubmit=\'formSubmit()\'><div class=\'form-group\'><label>Name</label><input type=\'text\' class=\'form-control\' name=\'name\'></div><div class=\'form-group\'><label>Description</label><textarea rows=\'4\' class=\'form-control\' name=\'description\'></textarea><button type=\'button\' id=\'createBookButton\' onclick=\'button();\' class=\'btn btn-primary\' style=\'float:right;margin-top:15px;margin-right:5px\'>Create</button></form>');">
-				+
+				<span id="plus">+</span>
 			</div>
 		</div>
 	</main>

@@ -48,10 +48,11 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 	//var_dump($_POST);
 	$_POST['book'] = (int)$_POST['book'];
 	
-	$query = mysqli_query($con, "SELECT COUNT() as count FROM recipies WHERE id='$_POST[recipe]'");
-	$row = mysqli_fetch_array($query);
-	//smail('blazerunner44@gmail.com', 'de', $row['count']);
-	if($row['count'] == 0){
+	if($_POST['recipe'] != 'null'){
+		// $query = mysqli_query($con, "SELECT COUNT() as count FROM recipies WHERE id='$_POST[recipe]'");
+		// $row = mysqli_fetch_array($query);
+		// //smail('blazerunner44@gmail.com', 'de', $row['count']);
+		// if($row['count'] == 0){
 		if(mysqli_query($con, "UPDATE recipies SET name='$_POST[name]', description='$_POST[description]', ingredients='$neededStuff', steps='$steps' WHERE id='$_POST[recipe]'")){
 			echo createJSON(200, "Recipe Updated successfully!");
 		}else{
