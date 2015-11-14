@@ -38,7 +38,7 @@ require 'services/mysql.php';
 				"<h3>Ingredients</h3>";
 			$.each(jQuery.parseJSON(recipe.ingredients), function(ingredient, measurement){
 				appendMe += "<div class='ingredient2'><h4>" + ingredient + "</h4>";
-				appendMe += "<h4 class='measurement'>" + measurement + "</h4></div>";
+				appendMe += "<h4 class='measurement2'>" + measurement + "</h4></div>";
 			});
 			appendMe += "</div>";
 
