@@ -43,6 +43,6 @@
 
   Your browser does not support the video tag.
 </video>
- <a href="sign_up.html">Don't have an account?</a>
+ <a href="sign_up.php">Don't have an account?</a>
 </body>
  </html>
