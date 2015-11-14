@@ -5,7 +5,7 @@ require 'services/mysql.php';
 <!Doctype html>
 <html>
 <head>
-	<title>Time To eat</title>
+	<title>Home</title>
 	<link rel="stylesheet" type="text/css" href="css/dashboard.css">
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
