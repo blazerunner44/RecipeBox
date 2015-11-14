@@ -12,3 +12,11 @@ li{
 	margin-bottom: 15px;
 	cursor: pointer;
 }
+.ingredient{
+	width:75% !important;
+	display:inline !important;
+}
+.measurement{
+	width:20% !important;
+	display:inline !important;
+}
