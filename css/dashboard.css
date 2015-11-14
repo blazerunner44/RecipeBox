@@ -46,9 +46,13 @@ h3{
 	font-size: 18pt;
 }
 header{
-	width: 120%;
+	width: 106.15%;
 	background-color: black;
 	height: 60px;
-	color: white;
 	right: 10%;
+}
+header a{
+	
+	color: white;
+	float: right;
 }
