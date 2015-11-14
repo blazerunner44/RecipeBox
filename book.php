@@ -16,18 +16,29 @@ require 'services/mysql.php';
 	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 
 	<script type="text/javascript">
-	$(document).ready(function(){
-		$("#addRecipe").click(function(){
-			//$("#addRecipeModal").modal();
+	function createRecipe(){
+		$.post('services/recipies/', $("#createRecipeForm").serialize(), function(data){
+			console.log(data);
+			data = jQuery.parseJSON(data);
+			if(data.status == 200){
+				location.reload();
+			}else{
+				alert(data.response);
+			}
 		});
-	});
+	}
 	</script>
 </head>
 <body>
 	<aside>
+		<?php
+		$book_id = (int)$_GET['book'];
+		$query = mysqli_query($con, "SELECT name FROM books WHERE id=$book_id");
+		$row = mysqli_fetch_array($query);
+		echo "<h2>{$row[name]}</h2>";
+		?>
 		<ul>
 			<?php
-			$book_id = (int)$_GET['book'];
 			$query = mysqli_query($con, "SELECT name FROM recipies WHERE book = $book_id");
 			while($row = mysqli_fetch_array($query)){
 				echo "<li>{$row[name]}</li>";
@@ -64,17 +75,24 @@ require 'services/mysql.php';
         		<label>Image</label>
         		<input type="file" name="pic">
         	</div>
-        	<div class="form-group">
+        	<div class="form-group" id="ingredientCont">
         		<label>Ingredients</label><br>
-        		<input class="form-control ingredient" name="ingredient[]" placeholder="Ingredient">
-        		<input class="form-control measurement" name="measurement[]" placeholder="Measurement">
+        		<div id="ingredientTemplate">
+        			<input class="form-control ingredient" name="ingredient[]" placeholder="Ingredient">
+        			<input class="form-control measurement" name="measurement[]" placeholder="Measurement">
+        		</div>
         	</div>
-        	<a onclick="" href="#">Add Ingredient</a>
+        	<a onclick="$('#ingredientTemplate').clone().appendTo('#ingredientCont').find('input').val('');" href="#">Add Ingredient</a>
+        	<div class="form-group" id="stepCont">
+        		<label>Steps</label><br>
+        		<input class="form-control step" id="stepTemplate" name="steps[]" placeholder="Recipe Step">
+        	</div>
+        	<a onclick="$('#stepTemplate').clone().appendTo('#stepCont').val('');" href="#">Add Step</a>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary" onclick="createRecipe();">Add Recipe</button>
       </div>
     </div>
   </div>

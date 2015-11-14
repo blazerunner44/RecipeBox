@@ -15,8 +15,17 @@ li{
 .ingredient{
 	width:75% !important;
 	display:inline !important;
+	margin-bottom: 7px;
 }
 .measurement{
 	width:20% !important;
 	display:inline !important;
+}
+.step{
+	margin-bottom: 7px;
+}
+h2{
+	color:white !important;
+	width:100%;
+	text-align: center;
 }
