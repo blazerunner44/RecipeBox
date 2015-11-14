@@ -26,9 +26,9 @@ require 'services/mysql.php';
 </head>
 <body>
 	<aside>
-		<img src="images/default_profile.jpg" id="profilePic" />
+		<img src="<?php echo $_SESSION['auth']['profile_pic']; ?>" id="profilePic" />
 		<h3><?php echo $_SESSION['auth']['firstName'] . ' ' . $_SESSION['auth']['lastName']; ?></h3>
-		<a href="settings.php"> Don't have an account?</a>
+		<a href="settings.php"> Change Profile Picture</a>
 	</aside>
 
 	<main>

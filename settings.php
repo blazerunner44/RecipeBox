@@ -9,7 +9,7 @@ require 'services/mysql.php';
 </head>
 <body>
 This form allows you to upload a file to the server.<br>
-<form action="getfile.php" method="post"><br>
+<form action="after.php" method="post" enctype="multipart/form-data"><br>
 Type (or select) Filename: <input type="file" name="uploadFile">
 <input type="submit" value="Upload File">
 </form>
