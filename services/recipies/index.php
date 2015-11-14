@@ -18,8 +18,9 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 	$steps = json_encode($_POST['steps']);
 	//var_dump($neededStuff);
 	//var_dump($_POST);
+	$_POST['book'] = (int)$_POST['book'];
 	
-	if(mysqli_query($con, "INSERT INTO recipies (name, description, book, ingredients, steps) VALUES ('$_POST[name]', '$_POST[description]', 17, '$neededStuff', '$steps')")){
+	if(mysqli_query($con, "INSERT INTO recipies (name, description, book, ingredients, steps) VALUES ('$_POST[name]', '$_POST[description]', $_POST[book], '$neededStuff', '$steps')")){
 		echo createJSON(200, "Recipe created successfully!");
 	}else{
 		echo createJSON(500, mysqli_error($con));

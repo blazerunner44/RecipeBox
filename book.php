@@ -88,6 +88,7 @@ require 'services/mysql.php';
         		<input class="form-control step" id="stepTemplate" name="steps[]" placeholder="Recipe Step">
         	</div>
         	<a onclick="$('#stepTemplate').clone().appendTo('#stepCont').val('');" href="#">Add Step</a>
+        	<input type="hidden" name="book" value="<?php echo $book_id; ?>" />
         </form>
       </div>
       <div class="modal-footer">
