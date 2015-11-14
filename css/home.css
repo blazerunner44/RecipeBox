@@ -3,15 +3,21 @@ body{
 }
 
 form,h1{
-	position: relative; 
-	top: 46%;
+	position: absolute; 
+	top: 12%;
 	left: 40%;
 	width:300px;
 }
 video{
-	position: relative;
-	left: 65%;
-	top: 10%;
+	position: absolute;
+	left: 35%;
+	top: 35%;
 	color: black;
+
+}
+a{
+	position: absolute;
+	left:47%; 
+	top:26.5%;
 
 }

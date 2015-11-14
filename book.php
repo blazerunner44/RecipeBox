@@ -70,6 +70,7 @@ require 'services/mysql.php';
 			?>
 			<li id="addRecipe" data-toggle="modal" data-target="#addRecipeModal">+ Add Recipe</li>
 		</ul>
+		<a href="dashboard.php">Back</a>
 	</aside>
 
 	<main>

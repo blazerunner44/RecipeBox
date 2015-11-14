@@ -40,11 +40,13 @@ require 'services/mysql.php';
 		<div id="books">
 			<?php
 			$user_id = (int)$_SESSION['auth']['id'];
-			$query = mysqli_query($con, "SELECT id, name, image FROM books WHERE owner_id = {$user_id}") or die(mysqli_error($con));
+			$query = mysqli_query($con, "SELECT id, name,description, image FROM books WHERE owner_id = {$user_id}") or die(mysqli_error($con));
 			while($row = mysqli_fetch_assoc($query)){
 				echo <<<EOS
 				<div class='book' onclick='location.href = "book.php?book=$row[id]";'>
 					<h3>$row[name]</h3>
+					<p>$row[description]</p>
+					<span class = 'glyphicon glyphicon-trash'></span>
 				</div>
 EOS;
 
