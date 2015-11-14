@@ -8,7 +8,7 @@ ul{
 }
 li{
 	color:white;
-	font-size:18pt;
+	font-size:1.2em;
 	width:100%;
 	border-bottom: 1px dashed gray;
 	text-indent: 25px;
@@ -25,7 +25,11 @@ li{
 	display:inline !important;
 }
 .step{
-	margin-bottom: 2px;
+	margin-bottom: 5px;
+}
+#steps{
+	width:60%;
+	float:left;
 }
 h2{
 	color:white !important;
@@ -38,6 +42,9 @@ h1{
 h1 small span{
 	font-size:14pt;
 	margin-right:10px;
+}
+main h3{
+	margin-left: -65px;
 }
 #title{
 	width:60%;
@@ -60,6 +67,8 @@ h1 small span{
 }
 #ingredients{
 	width:25%;
+	float:right;
+	margin-right: 25px;
 }
 .measurement2{
 	float:right;

@@ -9,6 +9,9 @@ aside{
 	top: 0;
 	left: 0;
 }
+aside a{
+	cursor: pointer;
+}
 main{
 	background-color: 76B8CF;
 	position: relative;
@@ -35,16 +38,28 @@ h3{
 	border: 3px solid black;
 	border-radius: 3px;
 	cursor: pointer;
+	margin-left:15px;
+}
+.book p{
+	width:100%;
+	text-align: center;
+}
+.book button:nth-of-type(1){
+	margin-left:10px;
+}
+.book button:nth-of-type(2){
+	float:right;
+	margin-right: 10px;
 }
 #lastBook{
 	background-image: url("/images/new_book.png");
 	margin-top: -10px;
 	border: 3px dashed black;
-	padding:15px;
+	padding:25px;
 }
 #plus{
 	font-size: 83pt;
-	padding-left: 85px;
+	padding-left: 35%;
 }
 .book h3{
 	padding-top:15px;

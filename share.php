@@ -19,6 +19,9 @@ $_GET['book'] = $row['id'];
 	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 
 	<script type="text/javascript">
+	$(document).ready(function(){
+		$('aside ul li').first().trigger('click');
+	});
 		function loadRecipe(id){
 		$.getJSON('services/recipies/', {recipe: id}, function(data){
 			var recipe = data.response;

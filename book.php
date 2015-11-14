@@ -3,6 +3,9 @@ if($_GET['book'] == ''){
 	header('Location: dashboard.php');
 }
 session_start();
+if(!isset($_SESSION['auth'])){
+	header('Location: index.php');
+}
 require 'services/mysql.php';
 ?>
 <!Doctype html>
@@ -16,6 +19,9 @@ require 'services/mysql.php';
 	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 
 	<script type="text/javascript">
+	$(document).ready(function(){
+		$('aside ul li').first().trigger('click');
+	})
 	function deleteRecipe(recipeId){
 		$.ajax({
 		    url: 'services/recipies/?recipe=' + recipeId,
@@ -70,17 +76,16 @@ require 'services/mysql.php';
 			var appendMe = "<div class='row'><div id='title'><h1>" + recipe.name + "<small><span class='glyphicon glyphicon-pencil' onclick='editRecipe(" + recipe.id + ");'>Edit</span><span class='glyphicon glyphicon-trash' onclick='deleteRecipe(" + recipe.id + ");'>Delete</span></small></h1>" +
 				"<p>" + recipe.description + "</p></div>" +
 				"<div id='image'><img src='" + recipe.image + "'><span class='glyphicon glyphicon-pencil' data-toggle='modal' data-target='#uploadImage' onclick='$(&quot;#recipeHidden&quot;).attr(&quot;value&quot;, &quot;" + recipe.id + "&quot;);'></span></div></div>" +
+				"<div id='steps' class='row'><h3>Steps</h3>";
+				$.each(jQuery.parseJSON(recipe.steps), function(index, step){
+					appendMe += "<div class='step'>" + parseInt(index + 1) + ". " + step + "</div>";
+				});
+				appendMe += "</div>" +
 				"<div id='ingredients' class='row'>" + 
 				"<h3>Ingredients</h3>";
 			$.each(jQuery.parseJSON(recipe.ingredients), function(ingredient, measurement){
-				appendMe += "<div class='ingredient2'><h4>" + ingredient + "</h4>";
-				appendMe += "<h4 class='measurement2'>" + measurement + "</h4></div>";
-			});
-			appendMe += "</div>";
-
-			appendMe += "<div id='steps' class='row'><h3>Steps</h3>";
-			$.each(jQuery.parseJSON(recipe.steps), function(index, step){
-				appendMe += "<div class='step'>" + parseInt(index + 1) + ". " + step + "</div>";
+				appendMe += "<div class='ingredient2'><h4>" + measurement + "</h4>";
+				appendMe += "<h4 class='measurement2'>" + ingredient + "</h4></div>";
 			});
 			appendMe += "</div>";
 

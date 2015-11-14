@@ -1,5 +1,8 @@
 <?php 
-session_start(); 
+session_start();
+if(!isset($_SESSION['auth'])){
+	header('Location: index.php');
+}
 require 'services/mysql.php';
 ?>
 <!Doctype html>
