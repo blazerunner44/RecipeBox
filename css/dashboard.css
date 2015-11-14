@@ -23,7 +23,7 @@ h3{
 	color:white;
 	width:250px;
 	text-align: center;
-	margin-top:-10px;
+	margin-top:50px;
 }
 .book{
 	/*background-color:gray;*/
@@ -37,6 +37,8 @@ h3{
 }
 #lastBook{
 	background-image: url("/images/new_book.png");
+	margin-top: -10px;
+	padding-top: 41px;
 }
 .book h3{
 	padding-top:15px;
