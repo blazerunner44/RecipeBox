@@ -1,5 +1,5 @@
 body,h1{
-	background-color: red;	
+	background-color: #99ebff;
 }
 aside{
 	background-color: black;
@@ -10,6 +10,7 @@ aside{
 	left: 0;
 }
 main{
+	background-color: 76B8CF;
 	position: relative;
 	left:250px;
 	width:85%;
@@ -40,4 +41,11 @@ h3{
 .book h3{
 	padding-top:15px;
 	font-size: 18pt;
+}
+header{
+	width: 120%;
+	background-color: black;
+	height: 60px;
+	color: white;
+	right: 10%;
 }

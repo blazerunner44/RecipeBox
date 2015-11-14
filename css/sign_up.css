@@ -1,9 +1,14 @@
+body{
+	background-color: #99ebff;
+}
 input{
 	margin-bottom: 15px;
 }
 #errors{
+	display: none;
+	font-size: 56pt;
 	position:relative;
-	bottom:90%;
-	left:50%;
+	top: 0%;
+	left:0%;
 	color:red;
 }
