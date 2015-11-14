@@ -33,7 +33,7 @@ require 'services/mysql.php';
 
 	<main>
 		<header>
-		<a href="index.html"> Log out</a>
+		<a href="logout.php"> Log out</a>
 		</header>
 		<h1>Recipe Books:</h1>
 
